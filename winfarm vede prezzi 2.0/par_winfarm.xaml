@@ -3,7 +3,14 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:Drawing="clr-namespace:System.Drawing;assembly=System.Drawing" x:Class="winfarm_vede_prezzi_2._0.par_winfarm"
         Title="Parametri Winfarm" Height="357" Width="620.966" Loaded="Window_Loaded" >
-    <Grid HorizontalAlignment="Right" Width="613" Margin="0,0,2,0" Background="Cyan">
+    <Grid HorizontalAlignment="Right" Width="613" Margin="0,0,2,0">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.80,0.023" StartPoint="0.80,0.968">
+                <GradientStop Color="Blue"/>
+                <GradientStop Color="AliceBlue" Offset="0.635"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <Button x:Name="btn_salva" Content="Salva ed Esci                 " HorizontalAlignment="Left" Margin="283,259,0,0" VerticalAlignment="Top" Width="75" Height="45" Click="btn_salva_Click"/>
         <TextBox x:Name="tbx_server" HorizontalAlignment="Left" Height="23" Margin="18,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="tbx_percorso" HorizontalAlignment="Left" Height="23" Margin="18,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="397"/>
@@ -27,7 +34,7 @@
             <ComboBoxItem Background="#FFD60044"/>
             <ComboBoxItem Background="#FFF9000B"/>
             <ComboBoxItem/>
-           
+
         </ComboBox>
 
 
