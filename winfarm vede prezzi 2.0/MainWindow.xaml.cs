@@ -7,8 +7,6 @@ using System.Xml;
 using System.Windows.Threading;
 using System.Globalization;
 using System.Threading;
-using System.Collections;
-using System.Drawing;
 
 
 namespace winfarm_vede_prezzi_2._0
@@ -23,84 +21,15 @@ namespace winfarm_vede_prezzi_2._0
         {
             InitializeComponent();
             minsanTBX.Focusable = true;
-            XmlDocument doc = new XmlDocument();
-            if (File.Exists("c:/kiosk/parametri.xml"))
-
-            {
-                this.Focusable = true;
-                minsanTBX.Focusable = true;
-            }
-            else
-            {
-                XmlWriterSettings settings = new XmlWriterSettings();
-                settings.Indent = true;
-                settings.NewLineOnAttributes = true;
-
-                string ns = "parametri winfarm";
-
-                //creo la cartella kiosk se non esiste
-                Directory.CreateDirectory("c:/kiosk/");
-
-                //creo il file xml se non esiste
-                using (XmlWriter writer = XmlWriter.Create("c:/kiosk/parametri.xml", settings))
-                {
-                    writer.WriteStartDocument();
-
-                    writer.WriteStartElement("parametri_winfarm_vedeprezzi", ns);
-                    writer.WriteComment("winfam_parametri");
-
-                    //parametri di connessione al server winfarm
-                    writer.WriteStartElement("parametri_server", ns);
-                    writer.WriteAttributeString("server", "1");
-                    writer.WriteElementString("percorso_server", ns, "localhost");
-                    writer.WriteEndElement();
-                    //parametri della percorso winfarm sul server
-                    writer.WriteStartElement("parametri_server", ns);
-                    writer.WriteAttributeString("server", "2");
-                    writer.WriteElementString("percorso_winfarm", ns, "c:/program files (x86)/winfarm/archivi/arc2000.phs");
-                    writer.WriteEndElement();
-                    //parametri per l'intestazione 
-                    writer.WriteStartElement("parametri_server", ns);
-                    writer.WriteAttributeString("server", "3");
-                    writer.WriteElementString("percorso_intestazione", ns, "Farmacia del Mio amico Giuseppe");
-                    writer.WriteEndElement();
-                    //parametro per il tempo di visualizzazione del prezzo
-                    writer.WriteStartElement("parametri_server", ns);
-                    writer.WriteAttributeString("server", "4");
-                    writer.WriteElementString("percorso_tempo", ns, "5");
-                    writer.WriteEndElement();
-                    writer.WriteEndDocument();
-
-
-                }
-                minsanTBX.Focusable = true;
-            }
-            using (Stream lettore = File.OpenRead("c:/kiosk/parametri.xml"))
-            {
-                doc.Load(lettore);
-                XmlElement percorso = (XmlElement)doc.DocumentElement.LastChild;
-                XmlElement percorsoIntestazione = doc.DocumentElement.ChildNodes[3]["percorso_intestazione", "parametri winfarm"];
-                string intestazione = percorsoIntestazione.FirstChild.Value;
-                txblckIntestazione.Text = intestazione.ToString();
-            }
         }
 
         private void minsanTBX_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            XmlDocument doc = new XmlDocument();
-            using (Stream lettore = File.OpenRead("c:/kiosk/parametri.xml"))
-
-            {
-                doc.Load(lettore);
-                XmlElement percorso = (XmlElement)doc.DocumentElement.LastChild;
-                XmlElement percorso_server = doc.DocumentElement.ChildNodes[1]["percorso_server", "parametri winfarm"];
-                XmlElement percorso_winfarm = doc.DocumentElement.ChildNodes[2]["percorso_winfarm", "parametri winfarm"];
-                XmlElement percorsoIntestazione = doc.DocumentElement.ChildNodes[3]["percorso_intestazione", "parametri winfarm"];
-                XmlElement percorsoTempo = doc.DocumentElement.ChildNodes[4]["percorso_tempo", "parametri winfarm"];
-                string server = percorso_server.FirstChild.Value;
-                string stringa_winfarm = percorso_winfarm.FirstChild.Value;
-                string intestazione = percorsoIntestazione.FirstChild.Value;
-                int tempo =int.Parse(percorsoTempo.FirstChild.Value);
+            try{ 
+            string server = Properties.Settings.Default.server;
+            string stringa_winfarm = Properties.Settings.Default.percorso;
+            string intestazione = Properties.Settings.Default.farmacia;
+                int tempo =Properties.Settings.Default.timer;
 
                 txblckIntestazione.Text = intestazione.ToString();
 
@@ -311,6 +240,10 @@ namespace winfarm_vede_prezzi_2._0
                     timer(tempo);
 
                 }
+            }
+            catch
+            {
+
             }
         }
 
