@@ -70,5 +70,17 @@ namespace winfarm_vede_prezzi_2._0.Properties {
                 this["timer"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Blue")]
+        public string colore {
+            get {
+                return ((string)(this["colore"]));
+            }
+            set {
+                this["colore"] = value;
+            }
+        }
     }
 }

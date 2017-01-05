@@ -447,7 +447,7 @@ namespace winfarm_vede_prezzi_2._0
 
         private void Grid_Loaded(object sender, RoutedEventArgs e)
         {
-            
+          
         }
     }
     
