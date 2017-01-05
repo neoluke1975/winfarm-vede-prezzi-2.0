@@ -57,8 +57,7 @@
     <StartupObject>winfarm_vede_prezzi_2._0.App</StartupObject>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Vicing-Rounder-Computer-Connected.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>456FE0C4162AA45AC2C9842EAB956EAD3C50060F</ManifestCertificateThumbprint>

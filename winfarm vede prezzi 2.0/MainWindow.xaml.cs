@@ -2,8 +2,6 @@
 using System.Windows;
 using System.Windows.Input;
 using FirebirdSql.Data.FirebirdClient;
-using System.IO;
-using System.Xml;
 using System.Windows.Threading;
 using System.Globalization;
 using System.Threading;
